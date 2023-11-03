@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   config:
-    roomPlayerLimit: 3
+    roomPlayerLimit: 2
     playerCharacterCount: 3

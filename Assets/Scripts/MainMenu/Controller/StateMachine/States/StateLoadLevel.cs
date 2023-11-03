@@ -15,19 +15,10 @@ namespace Evu.MainMenu.MainMenuStateMachine
         {
             base.OnEnter(info, oldState);
 
-            AlertController.Instance.ShowController("", "", "Ok", () => {
-                LoadingController.Instance.ShowController(MenuAnim.MenuSlideAnimTypes.RightToCenter, () =>
-                {
-                    LevelSceneManager.LoadLevel();
-                });
-            });
-
-            /*
             LoadingController.Instance.ShowController(MenuAnim.MenuSlideAnimTypes.RightToCenter, () =>
             {
                 LevelSceneManager.LoadLevel();
             });
-            */
         }
     }
 }

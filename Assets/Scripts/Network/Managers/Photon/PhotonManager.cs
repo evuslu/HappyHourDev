@@ -17,12 +17,6 @@ namespace Evu.Network
 
         [SerializeField] private NetworkRunner networkRunner = null;
 
-        private Action onJoin = null;
-        private Action onJoinFailed = null;
-
-        private Action onConnectSuccess = null;
-        private Action onConnectFail = null;
-
         #region Mono
 
         protected override void Awake()
