@@ -19,8 +19,6 @@ namespace Evu.MainMenu{
         {
             ui.ShowUI();
 
-            ui.UpdateInfoText("Joining");
-
             Connect();
         }
 
@@ -35,6 +33,8 @@ namespace Evu.MainMenu{
 
             await PhotonManager.Instance.ConnectAsync(() =>
             {
+                ui.UpdateInfoText("Connected");
+
                 //success
                 DOVirtual.DelayedCall(0.2f, () => MainMenuController.Instance.ChangeState(StateIds.LoadLevel));
             }, () =>
