@@ -2,7 +2,7 @@
 {
     public abstract class StateBase
     {
-        public enum StateIds { NetworkManaged = -2, None = -1, Idle = 0 }
+        public enum StateIds { NetworkManaged = -2, None = -1, Idle = 0, MoveToTarget }
         public abstract StateIds StateId();
 
         public virtual bool IsTabState => false;
@@ -11,6 +11,7 @@
         public virtual void OnExit(StateInfo info, StateBase newState) { }
         public virtual void OnUpdate(StateInfo info) { }
         public virtual void OnFixedUpdate(StateInfo info) { }
+        public virtual void OnFixedUpdateNetwork(StateInfo info) { }
 
         protected StateMachine stateMachine;
 

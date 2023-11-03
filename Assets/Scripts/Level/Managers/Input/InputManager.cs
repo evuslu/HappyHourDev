@@ -31,8 +31,8 @@
 
         private void Update()
         {
-            if(clickDuration > -0.00001f)
-                clickDuration -= Time.deltaTime;
+            if(clickTimeRem > -0.00001f)
+                clickTimeRem -= Time.deltaTime;
 
             if(Input.GetKeyDown(KeyCode.P))
                 Debug.Break();
@@ -119,8 +119,10 @@
 
             OnTouchEnd?.Invoke();
 
-            if (clickDuration > 0f)
+            if (clickTimeRem > 0f)
                 OnClick?.Invoke();
+
+            clickTimeRem = -1f;
         }
 
         #endregion

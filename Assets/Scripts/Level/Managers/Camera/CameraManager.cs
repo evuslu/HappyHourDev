@@ -48,14 +48,9 @@
 
             Vector3 delta = InputManager.Instance.TouchPos - lastTouchPos;
 
-            Debug.Log(delta);
-
-            
-
-            cam.transform.position += (moveForward * delta.y + moveRight * delta.x) * moveSensivity;
+            cam.transform.position -= (moveForward * delta.y + moveRight * delta.x) * moveSensivity;
 
             lastTouchPos = InputManager.Instance.TouchPos;
-
         }
 
 

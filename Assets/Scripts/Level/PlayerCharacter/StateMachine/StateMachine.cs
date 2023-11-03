@@ -30,6 +30,14 @@
             State.OnFixedUpdate(stateInfo);
         }
 
+        public void FixedUpdateNetwork()
+        {
+            if (State == null || stateInfo == null)
+                return;
+
+            State.OnFixedUpdateNetwork(stateInfo);
+        }
+
         #endregion
 
         #region Public Functions
@@ -39,7 +47,8 @@
             states.Add(new StateNetworkManaged(this));
             states.Add(new StateNone(this));
             states.Add(new StateIdle(this));
-            
+            states.Add(new StateMoveToTarget(this));
+
             this.stateInfo = stateInfo;
 
             dictStates.Clear();

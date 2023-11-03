@@ -19,7 +19,43 @@ namespace Evu.Level{
         private StateMachine stateMachine = null;
 
         private int playerIndex = -1;
-        
+
+        #region Public Functions
+
+        public void EnableNavMeshAgent() => stateInfo.navMeshAgent.enabled = true;
+        public void DisableNavMeshAgent() => stateInfo.navMeshAgent.enabled = false;
+        public void StartNavmeshAgent()
+        {
+            if (!HasStateAuthority)
+                return;
+
+            if (stateInfo.navMeshAgent.isActiveAndEnabled)
+                stateInfo.navMeshAgent.isStopped = false;
+        }
+        public void StopNavmeshAgent()
+        {
+            if (!HasStateAuthority)
+                return;
+
+            if (stateInfo.navMeshAgent.isActiveAndEnabled)
+                stateInfo.navMeshAgent.isStopped = true;
+        }
+
+        public void SetSelectionIndcatorActive(bool isActive)
+        {
+            stateInfo.goSelectionIndicator.SetActive(isActive);
+        }
+
+        public void MoveToTarget(Vector3 moveTargetPosition)
+        {
+            stateInfo.moveTargetPosition = moveTargetPosition;
+
+            stateMachine.ChangeState(StateBase.StateIds.MoveToTarget);
+        }
+
+        #endregion
+
+        #region Mono
 
         protected void Awake()
         {
@@ -29,6 +65,14 @@ namespace Evu.Level{
 
         private void Start()
         {
+            stateInfo.navMeshAgent.updatePosition = false;
+            stateInfo.navMeshAgent.updateRotation = false;
+
+            StopNavmeshAgent();
+            DisableNavMeshAgent();
+
+            SetSelectionIndcatorActive(false);
+
             playerIndex = networkObject.InputAuthority.PlayerId % PhotonManager.MAX_PLAYER_COUNT;
 
             if (!HasStateAuthority)
@@ -46,8 +90,12 @@ namespace Evu.Level{
             StartCoroutine(UpdateVisualColor());
         }
 
-        private void Update()
+        public override void FixedUpdateNetwork()
         {
+            base.FixedUpdateNetwork();
+
+            stateMachine.FixedUpdateNetwork();
+
             Vector3 pos = transform.position;
             Quaternion rot = transform.rotation;
             foreach (GameObject go in stateInfo.goVisuals)
@@ -56,6 +104,10 @@ namespace Evu.Level{
                 go.transform.rotation = transform.rotation;
             }
         }
+
+        #endregion
+
+        #region Private Functions
 
         private IEnumerator UpdateVisualColor()
         {
@@ -76,6 +128,8 @@ namespace Evu.Level{
                 smr.SetPropertyBlock(block, i);
             }
         }
+
+        #endregion
 
     }
 
