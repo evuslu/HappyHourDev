@@ -11,7 +11,10 @@
     {
         public static Action OnLevelLoad;
 
-        #region Public Properties
+        
+        [SerializeField] Transform[] playerSpawnPositions = null;
+        [SerializeField] float spawnDistanceBeetwenCharacters = 2f;
+        [SerializeField] Color[] playerColors = null;
 
         public enum States { None, LevelLoad, Game}
         public States State { get; private set; } = States.None;
@@ -23,8 +26,6 @@
 
         public static Action OnGamePaused;
         public static Action OnGameResumed;
-
-        #endregion
 
         
         #region Mono Behaviour
@@ -42,6 +43,24 @@
 
                     ChangeState(States.LevelLoad);
                 } );
+        }
+
+        #endregion
+
+        #region Public Functions
+
+        public Vector3 CharacterSpawnPosition(int playerIndex, int characterIndex)
+        {
+            int spawnIndex = playerIndex % playerSpawnPositions.Length;
+
+            return playerSpawnPositions[spawnIndex].position + Vector3.forward * (spawnDistanceBeetwenCharacters * characterIndex);
+        }
+
+        public Color PlayerColor(int playerIndex)
+        {
+            int spawnIndex = playerIndex % playerSpawnPositions.Length;
+
+            return playerColors[spawnIndex];
         }
 
         #endregion

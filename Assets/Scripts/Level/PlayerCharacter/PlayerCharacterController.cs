@@ -22,9 +22,12 @@ namespace Evu.Level{
             PlayerRef playerRef = networkObject.Runner.LocalPlayer;
             playerIndex = playerRef.PlayerId % PhotonManager.MAX_PLAYER_COUNT;
 
-#warning config / const ???
-            transform.position = new Vector3(playerIndex * 2f, 0f, characterIndex * 2f);
+            transform.position = GameManager.Instance.CharacterSpawnPosition(playerIndex, characterIndex);
+
+            //TODO : Player color codes
+            Color playerColor = GameManager.Instance.PlayerColor(playerIndex);
         }
+
     }
 
 }

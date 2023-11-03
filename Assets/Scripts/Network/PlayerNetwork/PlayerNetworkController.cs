@@ -47,11 +47,10 @@ namespace Evu.Network{
                 return;
 
             PlayerRef playerRef = networkObject.Runner.LocalPlayer;
-#warning const / config
-            for (int i = 0; i < 3; i++)
-            {
+            int characterCount = UserManager.GameSettingsVM.PlayerCharacterCount;
+
+            for (int i = 0; i < characterCount; i++)
                 networkObject.Runner.Spawn(characterPrefab, Vector3.zero, Quaternion.identity, playerRef);
-            }//for (int i = 0; i < characters.Length; i++)
 
             isInitCompleted = true;
         }
