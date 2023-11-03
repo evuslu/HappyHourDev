@@ -11,7 +11,9 @@ namespace Evu.Network
     public class PhotonManager : EternalSingleton<PhotonManager>, INetworkRunnerCallbacks
     {
         private const string GameVersion = "1";
-        private const int MaxPlayerCount = 2;
+        public const int MAX_PLAYER_COUNT = 2;
+
+        public bool IsConnected => networkRunner.IsConnectedToServer;
 
         [SerializeField] private NetworkRunner networkRunner = null;
 
@@ -50,7 +52,7 @@ namespace Evu.Network
             var result = await networkRunner.StartGame(new StartGameArgs()
             {
                 GameMode = GameMode.Shared,
-                PlayerCount = MaxPlayerCount,
+                PlayerCount = MAX_PLAYER_COUNT,
                 SessionName = null, // null => random
                 MatchmakingMode = Fusion.Photon.Realtime.MatchmakingMode.FillRoom, //fill oldest servers first
                 CustomLobbyName = "Default",

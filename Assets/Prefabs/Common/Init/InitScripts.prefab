@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6778b454423984c0194b30442b9cfe78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNetworkController: {fileID: 4119739290418943915, guid: d4556bbccba10472481e6c084b872450, type: 3}
+  playerNetworkPrefab: {fileID: 4119739290418943915, guid: d4556bbccba10472481e6c084b872450, type: 3}
 --- !u!1 &5792046100092927001
 GameObject:
   m_ObjectHideFlags: 0
