@@ -20,16 +20,6 @@ namespace Evu.Network{
             runner.Spawn(playerNetworkPrefab, Vector3.zero, Quaternion.identity, player);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="character"></param>
-        /// <returns>Character Index</returns>
-        public int OnLocalPlayerCharacterSpawn(PlayerCharacterController character)
-        {
-            localCharacters.Add(character);
-            return localCharacters.Count - 1;
-        }
     }
 
 }

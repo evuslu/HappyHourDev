@@ -50,7 +50,11 @@ namespace Evu.Network{
             int characterCount = UserManager.GameSettingsVM.PlayerCharacterCount;
 
             for (int i = 0; i < characterCount; i++)
-                networkObject.Runner.Spawn(characterPrefab, Vector3.zero, Quaternion.identity, playerRef);
+            {
+                PlayerCharacterController spawnedCharacter = networkObject.Runner.Spawn(characterPrefab, Vector3.zero, Quaternion.identity, playerRef);
+                spawnedCharacter.characterIndex = i;
+            }
+                
 
             isInitCompleted = true;
         }

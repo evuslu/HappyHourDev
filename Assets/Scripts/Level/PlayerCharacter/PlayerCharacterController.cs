@@ -9,6 +9,8 @@ namespace Evu.Level{
 
     public class PlayerCharacterController : NetworkBehaviour
     {
+        public int characterIndex = -1;
+
         [SerializeField] NetworkObject networkObject = null;
 
         [Space]
@@ -17,7 +19,7 @@ namespace Evu.Level{
         private StateMachine stateMachine = null;
 
         private int playerIndex = -1;
-        private int characterIndex = -1;
+        
 
         protected void Awake()
         {
@@ -38,9 +40,6 @@ namespace Evu.Level{
 
                 return;
             }//if (!HasStateAuthority)
-
-            // local player
-            characterIndex = PlayerSpawnManager.Instance.OnLocalPlayerCharacterSpawn(this);
 
             transform.position = GameManager.Instance.CharacterSpawnPosition(playerIndex, characterIndex);
 
