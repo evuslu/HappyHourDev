@@ -131,6 +131,8 @@
 
         private void InitStateLevelLoad()
         {
+            CameraManager.Instance.InitManager();
+
             LoadingController.Instance.HideController(MenuAnim.MenuSlideAnimTypes.CenterToLeft, () =>
             {
                 ChangeState(States.Game);
