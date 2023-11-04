@@ -15,7 +15,7 @@ namespace Evu.Level.PlayerChacterStateMachine
             base.OnEnter(info, oldState);
 
             info.controller.StopNavmeshAgent();
-            info.controller.DisableNavMeshAgent();
+            //info.controller.DisableNavMeshAgent();
 
             if (info.targetResource == null)
             {

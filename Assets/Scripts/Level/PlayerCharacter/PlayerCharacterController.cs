@@ -24,7 +24,7 @@ namespace Evu.Level{
         #region Public Functions
 
         public void EnableNavMeshAgent() => stateInfo.navMeshAgent.enabled = true;
-        public void DisableNavMeshAgent() => stateInfo.navMeshAgent.enabled = false;
+        //public void DisableNavMeshAgent() => stateInfo.navMeshAgent.enabled = false;
         public void StartNavmeshAgent()
         {
             if (!HasStateAuthority)
@@ -77,17 +77,12 @@ namespace Evu.Level{
         {
             stateMachine = gameObject.AddComponent<StateMachine>();
             stateMachine.InitStateMachine(stateInfo);
-
-            stateInfo.InitStateInfo();
         }
 
         private void Start()
         {
             stateInfo.navMeshAgent.updatePosition = false;
             stateInfo.navMeshAgent.updateRotation = false;
-
-            StopNavmeshAgent();
-            DisableNavMeshAgent();
 
             SetSelectionIndcatorActive(false);
 
@@ -104,6 +99,8 @@ namespace Evu.Level{
             }//if (!HasStateAuthority)
 
             transform.position = GameManager.Instance.CharacterSpawnPosition(playerIndex, CharacterIndex);
+
+            stateInfo.navMeshAgent.enabled = true;
 
             StartCoroutine(UpdateVisualColor());
         }

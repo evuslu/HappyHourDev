@@ -51,8 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  characterIndex: -1
+  _CharacterIndex: -1
   networkObject: {fileID: 6451771394134492860}
+  walkAnimSyncHelper: {fileID: 2403135281769971000}
   stateInfo:
     controller: {fileID: 7988715134698243596}
     goVisuals:
@@ -61,7 +62,6 @@ MonoBehaviour:
     skinnedMeshRenderer: {fileID: 4639431752980397885}
     navMeshAgent: {fileID: 2986172704523237602}
     goSelectionIndicator: {fileID: 2975489345319239823}
-    animator: {fileID: 4639431752984658427}
 --- !u!114 &6451771394134492860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,6 +1931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7085338009578371128}
+  - component: {fileID: 2403135281769971000}
   m_Layer: 0
   m_Name: interpolationTarget
   m_TagString: Untagged
@@ -1955,6 +1956,19 @@ Transform:
   m_Father: {fileID: 6862786657706951947}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2403135281769971000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8567275724929306734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b000a36ea1a4b41f9b144cd2977c179c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4639431752984658427}
 --- !u!1001 &2976250685988869451
 PrefabInstance:
   m_ObjectHideFlags: 0

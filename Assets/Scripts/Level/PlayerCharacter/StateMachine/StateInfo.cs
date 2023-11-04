@@ -25,18 +25,6 @@
 
         public GameObject goSelectionIndicator = null;
 
-        public Animator animator = null;
-        private int animHashWalkSpeed;
-
-        public void InitStateInfo()
-        {
-            animHashWalkSpeed = Animator.StringToHash("walkSpeed");
-        }
-
-        public void SetAnimatorWalkSpeedParameter(float speed)
-        {
-            animator.SetFloat(animHashWalkSpeed, speed);
-        }
     }
 }
 
