@@ -129,37 +129,3 @@
     }
 
 }
-
-
-
-/*
-        #region Public Functions
-
-        public bool IsPointerOverUIObject()
-        {
-            PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-            eventDataCurrentPosition.position = GetPointerPosition();
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-            return results.Count > 0;
-        }
-
-        #endregion
-        */
-
-
-
-/*
-private Vector2 GetPointerPosition()
-{
-    if (IsTouchScreen)
-    {
-        if (Input.touchCount == 0)
-            return Vector2.zero;
-
-        return new Vector2(Input.touches[0].position.x, Input.touches[0].position.y);
-    }
-
-    return new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-}
-*/

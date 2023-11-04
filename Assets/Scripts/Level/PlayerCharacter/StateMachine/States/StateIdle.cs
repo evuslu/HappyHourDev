@@ -12,8 +12,6 @@ namespace Evu.Level.PlayerChacterStateMachine
         public override void OnEnter(StateInfo info, StateBase oldState)
         {
             base.OnEnter(info, oldState);
-
-            
         }
     }
 }

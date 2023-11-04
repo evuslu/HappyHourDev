@@ -21,6 +21,11 @@ namespace Evu.Network{
             runner.Spawn(playerNetworkPrefab, Vector3.zero, Quaternion.identity, player);
         }
 
+        /// <summary>
+        /// Collect game objects(Resources) and spawns resources on network
+        /// </summary>
+        /// <param name="networkObject"></param>
+        /// <param name="playerRef"></param>
         public void HandleResourceSpawns(NetworkObject networkObject, PlayerRef playerRef)
         {
             ResourceController[] resources = FindObjectsOfType<ResourceController>();

@@ -124,7 +124,6 @@ namespace Evu.Level{
         {
             stateMachine.FixedUpdateNetwork(Runner.DeltaTime);
             
-
             Vector3 pos = transform.position;
             Quaternion rot = transform.rotation;
             foreach (GameObject go in stateInfo.goVisuals)

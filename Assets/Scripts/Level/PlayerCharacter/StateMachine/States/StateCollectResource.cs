@@ -5,6 +5,7 @@ namespace Evu.Level.PlayerChacterStateMachine
 {
     public class StateMoveCollectResource : StateBase
     {
+
         public override StateIds StateId() => StateIds.CollectResource;
 
         public StateMoveCollectResource(StateMachine stateMachine) : base(stateMachine) { }

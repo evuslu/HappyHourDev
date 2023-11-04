@@ -27,7 +27,6 @@ namespace Evu.Level{
             networkObject.RequestStateAuthority();
         }
 
-
         public override void FixedUpdateNetwork()
         {
             if (targetCharacter == null)

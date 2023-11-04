@@ -11,12 +11,14 @@
     {
         public static Action OnLevelLoad;
 
+#pragma warning disable 0649
         [Serializable]
         struct CharacterColors
         {
             public Color[] characterColors;
         }
-        
+#pragma warning restore 0649
+
         [SerializeField] Transform[] playerSpawnPositions = null;
         [SerializeField] float spawnDistanceBeetwenCharacters = 2f;
         [SerializeField] CharacterColors[] playerColors = null;
@@ -32,7 +34,6 @@
         public static Action OnGamePaused;
         public static Action OnGameResumed;
 
-        
         #region Mono Behaviour
 
         private void Start()
@@ -109,7 +110,6 @@
                     InitStateLevelLoad();
                     break;
                 case States.Game:
-                    InitStateGame();
                     break;
             }
 
@@ -146,15 +146,6 @@
                 IsLevelLoadCompleted = true;
                 OnLevelLoad?.Invoke();
             });//LoadingController.Instance.HideController
-        }
-
-        #endregion
-
-        #region State Game
-
-        private void InitStateGame()
-        {
-            
         }
 
         #endregion

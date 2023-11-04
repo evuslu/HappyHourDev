@@ -1,8 +1,6 @@
 namespace Evu.Common
 {
 
-    using System.Collections;
-    using System.Collections.Generic;
     using Evu.Common.UI;
     using UnityEngine;
 
