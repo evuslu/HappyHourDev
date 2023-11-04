@@ -30,12 +30,12 @@
             State.OnFixedUpdate(stateInfo);
         }
 
-        public void FixedUpdateNetwork()
+        public void FixedUpdateNetwork(float deltaTime)
         {
             if (State == null || stateInfo == null)
                 return;
 
-            State.OnFixedUpdateNetwork(stateInfo);
+            State.OnFixedUpdateNetwork(stateInfo, deltaTime);
         }
 
         #endregion

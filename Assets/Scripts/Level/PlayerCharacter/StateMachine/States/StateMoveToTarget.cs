@@ -26,12 +26,12 @@ namespace Evu.Level.PlayerChacterStateMachine
 
             info.controller.StopNavmeshAgent();
             info.controller.DisableNavMeshAgent();
+
+            info.SetAnimatorWalkSpeedParameter(0f);
         }
 
-        public override void OnFixedUpdateNetwork(StateInfo info)
+        public override void OnFixedUpdateNetwork(StateInfo info, float deltaTime)
         {
-            base.OnFixedUpdateNetwork(info);
-
             info.navMeshAgent.destination = info.moveTargetPosition;
 
             Vector3 nextPos = info.navMeshAgent.nextPosition;
@@ -40,6 +40,10 @@ namespace Evu.Level.PlayerChacterStateMachine
             dir = dir.normalized;
             if (dir != Vector3.zero)
                 info.controller.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+
+            float speed = (info.navMeshAgent.nextPosition - info.controller.transform.position).magnitude / deltaTime;
+            info.SetAnimatorWalkSpeedParameter(speed);
+
             info.controller.transform.position = info.navMeshAgent.nextPosition;
         }
 

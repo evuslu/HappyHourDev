@@ -77,6 +77,8 @@ namespace Evu.Level{
         {
             stateMachine = gameObject.AddComponent<StateMachine>();
             stateMachine.InitStateMachine(stateInfo);
+
+            stateInfo.InitStateInfo();
         }
 
         private void Start()
@@ -120,7 +122,8 @@ namespace Evu.Level{
 
         public override void FixedUpdateNetwork()
         {
-            stateMachine.FixedUpdateNetwork();
+            stateMachine.FixedUpdateNetwork(Runner.DeltaTime);
+            
 
             Vector3 pos = transform.position;
             Quaternion rot = transform.rotation;

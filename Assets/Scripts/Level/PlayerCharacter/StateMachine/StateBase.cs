@@ -11,7 +11,7 @@
         public virtual void OnExit(StateInfo info, StateBase newState) { }
         public virtual void OnUpdate(StateInfo info) { }
         public virtual void OnFixedUpdate(StateInfo info) { }
-        public virtual void OnFixedUpdateNetwork(StateInfo info) { }
+        public virtual void OnFixedUpdateNetwork(StateInfo info, float deltaTime) { }
 
         protected StateMachine stateMachine;
 
