@@ -9,7 +9,8 @@ namespace Evu.Level{
 
     public class PlayerCharacterController : NetworkBehaviour
     {
-        public int characterIndex = -1;
+        [Networked]
+        public int CharacterIndex { get; set; } = -1;
 
         [SerializeField] NetworkObject networkObject = null;
 
@@ -100,7 +101,7 @@ namespace Evu.Level{
                 return;
             }//if (!HasStateAuthority)
 
-            transform.position = GameManager.Instance.CharacterSpawnPosition(playerIndex, characterIndex);
+            transform.position = GameManager.Instance.CharacterSpawnPosition(playerIndex, CharacterIndex);
 
             StartCoroutine(UpdateVisualColor());
         }
@@ -139,7 +140,7 @@ namespace Evu.Level{
             while (GameManager.Instance == null || !GameManager.Instance.IsLevelLoadCompleted)
                 yield return null; // another player's character initialized before our level initialization
 
-            Color playerColor = GameManager.Instance.PlayerColor(playerIndex);
+            Color playerColor = GameManager.Instance.PlayerColor(playerIndex, CharacterIndex);
 
             SkinnedMeshRenderer smr = stateInfo.skinnedMeshRenderer;
             MaterialPropertyBlock block = new MaterialPropertyBlock();

@@ -11,10 +11,15 @@
     {
         public static Action OnLevelLoad;
 
+        [Serializable]
+        struct CharacterColors
+        {
+            public Color[] characterColors;
+        }
         
         [SerializeField] Transform[] playerSpawnPositions = null;
         [SerializeField] float spawnDistanceBeetwenCharacters = 2f;
-        [SerializeField] Color[] playerColors = null;
+        [SerializeField] CharacterColors[] playerColors = null;
 
         public enum States { None, LevelLoad, Game}
         public States State { get; private set; } = States.None;
@@ -56,11 +61,12 @@
             return playerSpawnPositions[spawnIndex].position + Vector3.forward * (spawnDistanceBeetwenCharacters * characterIndex);
         }
 
-        public Color PlayerColor(int playerIndex)
+        public Color PlayerColor(int playerIndex, int characterIndex)
         {
-            int spawnIndex = playerIndex % playerSpawnPositions.Length;
+            int spawnPlayerIndex = playerIndex % playerSpawnPositions.Length;
+            int spawnCharacterIndex = playerIndex % playerColors[spawnPlayerIndex].characterColors.Length;
 
-            return playerColors[spawnIndex];
+            return playerColors[spawnPlayerIndex].characterColors[characterIndex];
         }
 
         #endregion

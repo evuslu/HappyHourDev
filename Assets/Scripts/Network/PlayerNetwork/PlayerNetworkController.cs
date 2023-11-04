@@ -52,7 +52,7 @@ namespace Evu.Network{
             for (int i = 0; i < characterCount; i++)
             {
                 PlayerCharacterController spawnedCharacter = networkObject.Runner.Spawn(characterPrefab, Vector3.zero, Quaternion.identity, playerRef);
-                spawnedCharacter.characterIndex = i;
+                spawnedCharacter.CharacterIndex = i;
             }
 
             PlayerSpawnManager.Instance.HandleResourceSpawns(networkObject, playerRef);
