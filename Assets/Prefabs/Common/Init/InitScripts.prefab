@@ -1085,6 +1085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNetworkPrefab: {fileID: 4119739290418943915, guid: d4556bbccba10472481e6c084b872450, type: 3}
+  resourceWoodPrefab: {fileID: 5124358113970118313, guid: 5d384f175acb346e8a079b03550994a6, type: 3}
 --- !u!1 &5792046100092927001
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 {
     public abstract class StateBase
     {
-        public enum StateIds { NetworkManaged = -2, None = -1, Idle = 0, MoveToTarget }
+        public enum StateIds { NetworkManaged = -2, None = -1, Idle = 0, MoveToTarget, CollectResource }
         public abstract StateIds StateId();
 
         public virtual bool IsTabState => false;

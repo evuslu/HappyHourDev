@@ -48,6 +48,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   networkObject: {fileID: 4119739290418943908}
   characterPrefab: {fileID: 7988715134698243596, guid: 269c96fe960924978bef7bf62ba3cca9, type: 3}
+  resourceWoodPrefab: {fileID: 5124358113970118313, guid: 5d384f175acb346e8a079b03550994a6, type: 3}
 --- !u!114 &4119739290418943908
 MonoBehaviour:
   m_ObjectHideFlags: 0

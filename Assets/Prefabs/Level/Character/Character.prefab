@@ -60,7 +60,6 @@ MonoBehaviour:
     - {fileID: 2975489345319239823}
     skinnedMeshRenderer: {fileID: 4639431752980397885}
     navMeshAgent: {fileID: 2986172704523237602}
-    navMeshObstacle: {fileID: 0}
     goSelectionIndicator: {fileID: 2975489345319239823}
     animator: {fileID: 4639431752984658427}
 --- !u!114 &6451771394134492860
@@ -153,7 +152,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4334216387809077274}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.3
   m_Speed: 3.5

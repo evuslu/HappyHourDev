@@ -48,6 +48,7 @@
             states.Add(new StateNone(this));
             states.Add(new StateIdle(this));
             states.Add(new StateMoveToTarget(this));
+            states.Add(new StateMoveCollectResource(this));
 
             this.stateInfo = stateInfo;
 

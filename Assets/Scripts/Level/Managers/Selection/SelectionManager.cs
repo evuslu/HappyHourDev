@@ -9,7 +9,7 @@ namespace Evu.Level{
         private Camera cam = null;
 
         private PlayerCharacterController selectedCharacter = null;
-
+        
         private void Awake()
         {
             cam = Camera.main;
@@ -48,10 +48,20 @@ namespace Evu.Level{
                 return;
             }
 
-            //ground hit
             if (selectedCharacter == null)
                 return;
 
+            ResourceController resource = go.GetComponent<ResourceController>();
+
+            if (resource != null)
+            {
+                //resource hit
+                selectedCharacter.MoveToTarget(resource);
+
+                return;
+            }
+
+            //ground hit
             selectedCharacter.MoveToTarget(hitInfo.point);
         }
 

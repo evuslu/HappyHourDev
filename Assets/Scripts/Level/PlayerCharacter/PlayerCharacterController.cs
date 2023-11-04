@@ -53,6 +53,21 @@ namespace Evu.Level{
             stateMachine.ChangeState(StateBase.StateIds.MoveToTarget);
         }
 
+        public void MoveToTarget(ResourceController resource)
+        {
+            stateInfo.targetResource = resource;
+            stateInfo.targetInctanceId = resource.gameObject.GetInstanceID();
+
+            stateInfo.moveTargetPosition = resource.transform.position;
+
+            stateMachine.ChangeState(StateBase.StateIds.MoveToTarget);
+        }
+
+        public void OnResourceCollect()
+        {
+            stateMachine.ChangeState(StateBase.StateIds.Idle);
+        }
+
         #endregion
 
         #region Mono
@@ -90,10 +105,20 @@ namespace Evu.Level{
             StartCoroutine(UpdateVisualColor());
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (stateInfo.targetResource == null)
+                return;
+
+            if (other.gameObject.GetInstanceID() != stateInfo.targetInctanceId)
+                return;
+
+            //we found a resource, collect it
+            stateMachine.ChangeState(StateBase.StateIds.CollectResource);
+        }
+
         public override void FixedUpdateNetwork()
         {
-            base.FixedUpdateNetwork();
-
             stateMachine.FixedUpdateNetwork();
 
             Vector3 pos = transform.position;

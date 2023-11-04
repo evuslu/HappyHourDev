@@ -17,6 +17,12 @@
         [NonSerialized]
         public Vector3 moveTargetPosition = Vector3.zero;
 
+        [NonSerialized]
+        public ResourceController targetResource = null;
+
+        [NonSerialized]
+        public int targetInctanceId = int.MinValue;
+
         public GameObject goSelectionIndicator = null;
 
         public Animator animator = null;

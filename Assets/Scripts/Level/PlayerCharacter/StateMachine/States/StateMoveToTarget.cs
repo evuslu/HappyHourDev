@@ -15,6 +15,9 @@ namespace Evu.Level.PlayerChacterStateMachine
 
             info.controller.EnableNavMeshAgent();
             info.controller.StartNavmeshAgent();
+
+            if (info.targetResource != null)
+                info.targetResource.RequestStateAuthority();
         }
 
         public override void OnExit(StateInfo info, StateBase newState)
@@ -37,7 +40,6 @@ namespace Evu.Level.PlayerChacterStateMachine
             dir = dir.normalized;
             if (dir != Vector3.zero)
                 info.controller.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
-            Debug.Log(info.navMeshAgent.nextPosition);
             info.controller.transform.position = info.navMeshAgent.nextPosition;
         }
 

@@ -10,7 +10,7 @@ namespace Evu.Network{
     {
         [SerializeField] NetworkObject networkObject = null;
         [SerializeField] PlayerCharacterController characterPrefab = null;
-
+        
         private bool isInitCompleted = false;
         private bool IsLevelLoadCompleted => GameManager.Instance?.IsLevelLoadCompleted ?? false;
 
@@ -54,7 +54,8 @@ namespace Evu.Network{
                 PlayerCharacterController spawnedCharacter = networkObject.Runner.Spawn(characterPrefab, Vector3.zero, Quaternion.identity, playerRef);
                 spawnedCharacter.characterIndex = i;
             }
-                
+
+            PlayerSpawnManager.Instance.HandleResourceSpawns(networkObject, playerRef);
 
             isInitCompleted = true;
         }
