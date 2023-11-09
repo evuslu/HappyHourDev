@@ -1,6 +1,7 @@
 ﻿namespace Evu.Level.PlayerChacterStateMachine
 {
     using System;
+    using Evu.AStar;
     using Evu.Common.UI;
     using UnityEngine;
     using UnityEngine.AI;
@@ -13,7 +14,8 @@
         public GameObject[] goVisuals = null;
         public SkinnedMeshRenderer skinnedMeshRenderer = null;
 
-        public NavMeshAgent navMeshAgent = null;
+        public float speed = 5f;
+        public AStarAgent aStarAgent = null;
         [NonSerialized]
         public Vector3 moveTargetPosition = Vector3.zero;
 

@@ -5,6 +5,7 @@ namespace Evu.Network{
     using Evu.Level;
     using Fusion;
     using Unity.VisualScripting;
+    using Evu.AStar;
 
     public class PlayerNetworkController : NetworkBehaviour
     {

@@ -6,6 +6,7 @@ namespace Evu.Level{
     using Fusion;
     using UnityEngine;
     using Evu.Level.PlayerChacterStateMachine;
+    using Evu.AStar;
 
     public class PlayerCharacterController : NetworkBehaviour
     {
@@ -23,23 +24,23 @@ namespace Evu.Level{
 
         #region Public Functions
 
-        public void EnableNavMeshAgent() => stateInfo.navMeshAgent.enabled = true;
+        public void EnableAStarAgent() => stateInfo.aStarAgent.enabled = true;
         //public void DisableNavMeshAgent() => stateInfo.navMeshAgent.enabled = false;
-        public void StartNavmeshAgent()
+        public void StartAStarAgent()
         {
             if (!HasStateAuthority)
                 return;
 
-            if (stateInfo.navMeshAgent.isActiveAndEnabled)
-                stateInfo.navMeshAgent.isStopped = false;
+            if (stateInfo.aStarAgent.isActiveAndEnabled)
+                stateInfo.aStarAgent.IsStopped = false;
         }
         public void StopNavmeshAgent()
         {
             if (!HasStateAuthority)
                 return;
 
-            if (stateInfo.navMeshAgent.isActiveAndEnabled)
-                stateInfo.navMeshAgent.isStopped = true;
+            if (stateInfo.aStarAgent.isActiveAndEnabled)
+                stateInfo.aStarAgent.IsStopped = true;
         }
 
         public void SetSelectionIndcatorActive(bool isActive)
@@ -81,8 +82,10 @@ namespace Evu.Level{
 
         private void Start()
         {
+            /*
             stateInfo.navMeshAgent.updatePosition = false;
             stateInfo.navMeshAgent.updateRotation = false;
+            */
 
             SetSelectionIndcatorActive(false);
 
@@ -100,7 +103,11 @@ namespace Evu.Level{
 
             transform.position = GameManager.Instance.CharacterSpawnPosition(playerIndex, CharacterIndex);
 
-            stateInfo.navMeshAgent.enabled = true;
+            AStarAgent agent = GetComponent<AStarAgent>();
+            if (agent != null)
+                agent.OnNetworkSpawn();
+
+            stateInfo.aStarAgent.enabled = true;
 
             StartCoroutine(UpdateVisualColor());
         }
@@ -113,8 +120,8 @@ namespace Evu.Level{
             if (other.gameObject.GetInstanceID() != stateInfo.targetInctanceId)
                 return;
 
-            //we found a resource, collect it
-            stateMachine.ChangeState(StateBase.StateIds.CollectResource);
+
+            stateInfo.targetResource.MoveToPlayer(stateInfo.controller);
         }
 
         public override void FixedUpdateNetwork()

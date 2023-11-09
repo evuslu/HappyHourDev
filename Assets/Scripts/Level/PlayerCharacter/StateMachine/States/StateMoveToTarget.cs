@@ -13,8 +13,8 @@ namespace Evu.Level.PlayerChacterStateMachine
         {
             base.OnEnter(info, oldState);
 
-            info.controller.EnableNavMeshAgent();
-            info.controller.StartNavmeshAgent();
+            info.controller.EnableAStarAgent();
+            info.controller.StartAStarAgent();
 
             if (info.targetResource != null)
                 info.targetResource.RequestStateAuthority();
@@ -30,16 +30,28 @@ namespace Evu.Level.PlayerChacterStateMachine
 
         public override void OnFixedUpdateNetwork(StateInfo info, float deltaTime)
         {
-            info.navMeshAgent.destination = info.moveTargetPosition;
+            info.aStarAgent.SetDestination(info.moveTargetPosition);
 
-            Vector3 nextPos = info.navMeshAgent.nextPosition;
+            if (!info.aStarAgent.IsPathValid)
+            {
+                stateMachine.ChangeState(StateIds.Idle);
+                return;
+            }
+
+            Vector3 nextPos = info.aStarAgent.NextPosition;
             Vector3 dir = nextPos - info.controller.transform.position;
             dir.y = 0f;
             dir = dir.normalized;
-            if (dir != Vector3.zero)
-                info.controller.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+            if (dir == Vector3.zero)
+                return;
 
-            info.controller.transform.position = info.navMeshAgent.nextPosition;
+            info.controller.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+
+            nextPos = info.controller.transform.position + dir * info.speed * deltaTime;
+
+            info.controller.transform.position = nextPos;
+
+            info.aStarAgent.OnPositionUpdate(nextPos, dir);
         }
 
     }

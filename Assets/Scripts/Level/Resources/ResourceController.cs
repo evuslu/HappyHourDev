@@ -38,7 +38,7 @@ namespace Evu.Level{
             if ((pos - targetPos).sqrMagnitude < 0.25f)
             {
                 // reached to target
-                Destroy(gameObject);
+                Runner.Despawn(networkObject);
 
                 return;
             }
